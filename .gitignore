@@ -7,6 +7,8 @@
 !/hypr/
 /hypr/device_settings.conf
 
+!/foot/
+
 !/nvim/
 /nvim/coc-settings.json
 /nvim/packer_compiled.vim
