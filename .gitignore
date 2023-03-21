@@ -3,6 +3,9 @@
 
 !/.gitignore
 
+!/hypr/
+/hypr/*
+
 !/nvim/
 /nvim/coc-settings.json
 /nvim/packer_compiled.vim
