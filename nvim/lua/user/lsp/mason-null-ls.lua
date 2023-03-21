@@ -4,5 +4,5 @@ if not masonnullls_status_ok then
 end
 
 masonnullls.setup({
-	ensure_installed = { "stylua" },
+	ensure_installed = { "stylua", "rust-analyzer", "codelldb", "rustfmt" },
 })

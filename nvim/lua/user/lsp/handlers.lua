@@ -23,7 +23,7 @@ M.setup = function()
 	end
 
 	local config = {
-		virtual_text = false, -- disable virtual text
+		virtual_text = true, -- disable virtual text
 		signs = {
 			active = signs, -- show signs
 		},
@@ -37,6 +37,13 @@ M.setup = function()
 			source = "always",
 			header = "",
 			prefix = "",
+			format = function(d)
+				local code = d.code or (d.user_data and d.user_data.lsp.code)
+				if code then
+					return string.format("%s [%s]", d.message, code):gsub("1. ", "")
+				end
+				return d.message
+			end,
 		},
 	}
 
