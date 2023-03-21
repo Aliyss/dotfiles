@@ -4,5 +4,7 @@
 !/.gitignore
 
 !/nvim/
+/nvim/coc-settings.json
+/nvim/packer_compiled.vim
 /nvim/plugin/*
 /nvim/plugin/*/
