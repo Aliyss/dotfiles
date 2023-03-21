@@ -5,6 +5,7 @@
 !/Readme.md
 
 !/hypr/
+/hypr/device_settings.conf
 
 !/nvim/
 /nvim/coc-settings.json
