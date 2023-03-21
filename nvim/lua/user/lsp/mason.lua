@@ -1,4 +1,5 @@
 local servers = {
+	"svelte",
 	"lua_ls",
 	"cssls",
 	"html",

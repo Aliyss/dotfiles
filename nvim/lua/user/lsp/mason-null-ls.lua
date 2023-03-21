@@ -4,5 +4,14 @@ if not masonnullls_status_ok then
 end
 
 masonnullls.setup({
-	ensure_installed = { "stylua", "rust-analyzer", "codelldb", "rustfmt" },
+	ensure_installed = {
+		"stylua",
+		"rust-analyzer",
+		"codelldb",
+		"rustfmt",
+		"svelte-language-server",
+		"prettierd",
+		"eslint_d",
+		"tailwindcss-language-server",
+	},
 })

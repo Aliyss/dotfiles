@@ -65,6 +65,9 @@ require("packer").startup(function(use)
 	use({ "JoosepAlviste/nvim-ts-context-commentstring", commit = "88343753dbe81c227a1c1fd2c8d764afb8d36269" })
 	use("akinsho/bufferline.nvim")
 	use("lukas-reineke/indent-blankline.nvim")
+	--[[ use("prettier/vim-prettier") ]]
+	use("w0rp/ale")
+	use("Shougo/context_filetype.vim")
 
 	-- CMP-related plugins
 	use("hrsh7th/nvim-cmp")
@@ -89,6 +92,10 @@ require("packer").startup(function(use)
 	use("RRethy/vim-illuminate")
 	use("jay-babu/mason-null-ls.nvim")
 
+	-- Intellisense-related plugins
+	--[[ use("neoclide/coc.nvim") ]]
+	--[[ use("codechips/coc-svelte") ]]
+
 	-- Debugger-related plugins
 	use("mfussenegger/nvim-dap")
 
@@ -99,6 +106,18 @@ require("packer").startup(function(use)
 	-- Rust-related plugins
 	use("rust-lang/rust.vim")
 	use("simrat39/rust-tools.nvim")
+
+	-- Svelte-related plugins
+	use("burner/vim-svelte")
+
+	-- HTML-related plugins
+	--[[ use("othree/html5.vim") ]]
+
+	-- Javascript-related plugins
+	use("pangloss/vim-javascript")
+
+	-- Typescript-related plugins
+	--[[ use("HerringtonDarkholme/yats.vim") ]]
 
 	-- Automatically set up your configuration after cloning packer.nvim
 	-- Put this at the end after all plugins
