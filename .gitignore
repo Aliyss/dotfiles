@@ -2,7 +2,7 @@
 /*/
 
 !/.gitignore
-!/Readme.md
+!/README.md
 
 !/hypr/
 /hypr/device_settings.conf
