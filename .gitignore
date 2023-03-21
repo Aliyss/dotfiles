@@ -4,7 +4,6 @@
 !/.gitignore
 
 !/hypr/
-/hypr/*
 
 !/nvim/
 /nvim/coc-settings.json
