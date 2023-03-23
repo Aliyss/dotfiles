@@ -13,5 +13,8 @@ masonnullls.setup({
 		"prettierd",
 		"eslint_d",
 		"tailwindcss-language-server",
+		"shfmt",
+		"bash-language-server",
+		"shellcheck",
 	},
 })
