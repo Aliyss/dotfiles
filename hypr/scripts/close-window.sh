@@ -1,44 +1,97 @@
+SPACING=10;
+SPACINGY=11;
+SPACINGR=10;
+SPACINGL=0;
 
-SPOTIFYFOUND=$(hyprctl activewindow | grep -o -P -c " \-> Spotify:")
-FLOATINGFOOTFOUND=$(hyprctl clients | grep -A 10 -P "Window.*+" | grep -A 5 -P "floating: 1" | grep -A 2 -P -c "class:\sfoot")
-
+ACTIVECLIENTENDTIMEOUT=1
 hyprctl dispatch killactive
 
-if [[ $SPOTIFYFOUND -gt 0 || $FLOATINGFOOTFOUND -gt 0 ]]
-then
-    sleep 0.3
-    FLOATINGFOOT=$(hyprctl clients | grep -A 10 -P "Window.*+" | grep -A 5 -P "floating: 1" | grep -A 2 -P -c "class:\sfoot")
-    SPOTIFYFOUND=$(hyprctl clients | grep -o -P -c " \-> Spotify:")
-    
-    if [[ $FLOATINGFOOT -lt 1 ]]
-    then
-      if [[ $SPOTIFYFOUND -lt 1 ]]
-      then
-        hyprctl keyword monitor DP-2,addreserved,0,0,0,0.3
-      else
-        hyprctl dispatch movewindowpixel exact 4312 10,title:^Spotify\$;
-        hyprctl dispatch resizewindowpixel exact 796 1415,title:^Spotify\$;
-      fi
-    elif [[ $FLOATINGFOOT -lt 2 ]]
-    then
-      pid=$(hyprctl clients | grep -A 10 -P "Window.*+" | grep -A 5 -P "floating: 1" | grep -A 2 -P "class:\sfoot" | grep "pid: " | sed 's/.*pid:\s//g' | sort --numeric-sort | tail -n 1)
-      if [[ $SPOTIFYFOUND -gt 0 ]]
-      then
-        hyprctl dispatch movewindowpixel exact 4312 10,pid:"$pid";
-        hyprctl dispatch resizewindowpixel exact 796 800,pid:"$pid";
-      else
-        hyprctl dispatch movewindowpixel exact 4312 10,pid:"$pid";
-        hyprctl dispatch resizewindowpixel exact 796 1415,pid:"$pid";
-      fi
-    else
-      pid=$(hyprctl clients | grep -A 10 -P "Window.*+" | grep -A 5 -P "floating: 1" | grep -A 2 -P "class:\sfoot" | grep "pid: " | sed 's/.*pid:\s//g' | sort --numeric-sort | tail -n 1)
-      hyprctl dispatch movewindowpixel exact 4312 10,pid:"$pid";
-      hyprctl dispatch resizewindowpixel exact 796 700,pid:"$pid";
-      
-      pid=$(hyprctl clients | grep -A 10 -P "Window.*+" | grep -A 5 -P "floating: 1" | grep -A 2 -P "class:\sfoot" | grep "pid: " | sed 's/.*pid:\s//g' | sort --numeric-sort -r | tail -n 1)
-      hyprctl dispatch movewindowpixel exact 4312 725,pid:"$pid";
-      hyprctl dispatch resizewindowpixel exact 796 700,pid:"$pid";
-    fi
-
+ACTIVECLIENTFLOATING=$(~/.config/hypr/scripts/helpers/get_client_details.sh "floating")
+if [[ $ACTIVECLIENTFLOATING != 1 ]]; then
+  exit
 fi
 
+MONITORSIZE=""
+if [ ! "$MONITORNAME" ]; then
+  MONITORSIZE=$(~/.config/hypr/scripts/helpers/get_active_monitor_size.sh "size");
+else
+  MONITORSIZE=$(~/.config/hypr/scripts/helpers/get_active_monitor_size.sh "size" "$MONITORNAME");
+fi
+
+MONITORWIDTH=$(echo "$MONITORSIZE" | sed 's/x.*//')
+MONITORHEIGHT=$(echo "$MONITORSIZE" | sed 's/.*x//')
+
+MONITORHEIGHT=$((MONITORHEIGHT-2*SPACINGY))
+
+RESERVESPACE=$(~/.config/hypr/scripts/helpers/get_active_monitor_size.sh "reserved");
+
+MONITOR_ID=$(~/.config/hypr/scripts/helpers/get_active_monitor_size.sh "id")
+MONITORNAME=$(~/.config/hypr/scripts/helpers/get_active_monitor_size.sh "name")
+
+group=""
+clients=();
+sleep $ACTIVECLIENTENDTIMEOUT
+grouped=$(hyprctl clients | grep -A 10 -P "Window.*+" | grep -A 5 -C 5 -P "floating:\s1" | grep -A 11 -C 11 -P "monitor: $MONITOR_ID" | awk '{$1=$1};1' | grep -C 9 "pid:\s");
+
+if [[ -n "$grouped" ]]; then
+  while read -r line; do
+    if [ "$line" == "--" ] && [ -n "$group" ]; then
+        clientx=$(echo "$group" | grep -P "at:\s" | cut -d' ' -f2 | sed 's/,.*//');
+        clienty=$(echo "$group" | grep -P "at:\s" | cut -d' ' -f2 | sed 's/.*,//');
+        clienth=$(echo "$group" | grep -P "size:\s" | cut -d' ' -f2 | sed 's/.*,//');
+        clientw=$(echo "$group" | grep -P "size:\s" | cut -d' ' -f2 | sed 's/,.*//');
+        clientpid=$(echo "$group" | grep -P "pid:\s" | cut -d' ' -f2);
+        
+        clients+=("{x=$clientx, y=$clienty, height=$clienth, width=$clientw, pid=$clientpid}")
+        group=""
+    else
+        group+="$line"$'\n'
+    fi
+  done <<< "$grouped"
+fi
+
+if [[ -n "$grouped" && -n "$group" ]]; then
+  clientx=$(echo "$group" | grep -P "at:\s" | cut -d' ' -f2 | sed 's/,.*//');
+  clienty=$(echo "$group" | grep -P "at:\s" | cut -d' ' -f2 | sed 's/.*,//');
+  clienth=$(echo "$group" | grep -P "size:\s" | cut -d' ' -f2 | sed 's/.*,//');
+  clientw=$(echo "$group" | grep -P "size:\s" | cut -d' ' -f2 | sed 's/,.*//');
+  clientpid=$(echo "$group" | grep -P "pid:\s" | cut -d' ' -f2);
+  
+  clients+=("{x=$clientx, y=$clienty, height=$clienth, width=$clientw, pid=$clientpid}")
+  group=""
+fi
+
+if [[ -z "$grouped" ]]; then
+  # If there are no existing clients
+  hyprctl keyword monitor "$MONITORNAME",addreserved,0,0,0,0
+else
+  # Calculate the average height of existing clients
+  totalheight=0
+  for c in "${clients[@]}"; do
+    height=$(echo "$c" | sed -E 's/.*height=([0-9]+).*/\1/')
+    echo $height
+    totalheight=$((totalheight+height))
+  done
+
+  for i in "${!clients[@]}"; do
+    c="${clients[$i]}"
+    height=$(echo "$c" | sed -E 's/.*height=([0-9]+).*/\1/')
+    newheight=$((height*MONITORHEIGHT/totalheight-SPACING))
+    newy=$((i==0 ? "$SPACINGY" : $(echo ${clients[$i-1]} | sed -E 's/.*y=([0-9]+).*/\1/')+$(echo ${clients[$i-1]} | sed -E 's/.*height=([0-9]+).*/\1/')+SPACING))
+    clients[$i]=$(echo "$c" | sed -E "s/(y=)[0-9]+/\1$newy/" | sed -E "s/(height=)[0-9]+/\1$newheight/") 
+  done
+fi
+
+for i in "${!clients[@]}"; do
+  client="${clients[$i]}"
+  height=$(echo "$client" | sed 's/.*height=\([0-9]*\).*/\1/')
+  y=$(echo "$client" | sed 's/.*y=\([0-9]*\).*/\1/')
+  pid=$(echo "$client" | sed 's/.*pid=\([0-9]*\).*/\1/')
+
+  if [[ i -eq $((${#clients[@]} - 1)) ]]; then
+    height=$((height+SPACING))
+  fi
+
+  hyprctl dispatch resizewindowpixel exact $((RESERVESPACE - SPACINGR)) "$height",pid:"$pid"
+  hyprctl dispatch movewindowpixel exact $((MONITORWIDTH - RESERVESPACE - SPACINGL)) "$y",pid:"$pid"
+done
