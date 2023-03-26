@@ -69,7 +69,6 @@ else
   totalheight=0
   for c in "${clients[@]}"; do
     height=$(echo "$c" | sed -E 's/.*height=([0-9]+).*/\1/')
-    echo $height
     totalheight=$((totalheight+height))
   done
 
@@ -77,7 +76,7 @@ else
     c="${clients[$i]}"
     height=$(echo "$c" | sed -E 's/.*height=([0-9]+).*/\1/')
     newheight=$((height*MONITORHEIGHT/totalheight-SPACING))
-    newy=$((i==0 ? "$SPACINGY" : $(echo ${clients[$i-1]} | sed -E 's/.*y=([0-9]+).*/\1/')+$(echo ${clients[$i-1]} | sed -E 's/.*height=([0-9]+).*/\1/')+SPACING))
+    newy=$((i==0 ? "$SPACINGY" : $(echo "${clients[$i-1]}" | sed -E 's/.*y=([0-9]+).*/\1/')+$(echo "${clients[$i-1]}" | sed -E 's/.*height=([0-9]+).*/\1/')+SPACING))
     clients[$i]=$(echo "$c" | sed -E "s/(y=)[0-9]+/\1$newy/" | sed -E "s/(height=)[0-9]+/\1$newheight/") 
   done
 fi

@@ -6,7 +6,7 @@ where:
     -h  show this help text
     -a  app to launch or script
     -n  name of the monitor
-    -r  space to reserve
+    -r  space to reserve in percentage
     -p  pin the app
     -o  check if there is already an instance running by providing a check parameter"
 
@@ -60,6 +60,10 @@ if [ ! "$RESERVESPACE" ] && [ ! "$MONITORNAME" ]; then
   RESERVESPACETEMP=$(~/.config/hypr/scripts/helpers/get_active_monitor_size.sh "reserved");
 elif [ ! "$RESERVESPACE" ]; then
   RESERVESPACETEMP=$(~/.config/hypr/scripts/helpers/get_active_monitor_size.sh "reserved", "$MONITORNAME");
+fi
+
+if [ -n "$RESERVESPACE" ]; then
+  RESERVESPACE=$((RESERVESPACE * MONITORWIDTH / 100))
 fi
 
 if [ $((RESERVESPACETEMP - RESERVESPACE)) -gt 0 ]; then
@@ -126,7 +130,7 @@ else
   # Calculate the average height of existing clients
   totalheight=0
   for c in "${clients[@]}"; do
-    height=$(echo $c | sed -E 's/.*height=([0-9]+).*/\1/')
+    height=$(echo "$c" | sed -E 's/.*height=([0-9]+).*/\1/')
     totalheight=$((totalheight+height))
   done
   avgheight=$((totalheight/${#clients[@]}+1))  # add 1 to avoid division by zero
@@ -142,9 +146,9 @@ else
   totalheight=$((totalheight+newheight))
   for i in "${!clients[@]}"; do
     c="${clients[$i]}"
-    height=$(echo $c | sed -E 's/.*height=([0-9]+).*/\1/')
+    height=$(echo "$c" | sed -E 's/.*height=([0-9]+).*/\1/')
     newheight=$((height*MONITORHEIGHT/totalheight-SPACING))
-    newy=$((i==0 ? $SPACINGY : $(echo ${clients[$i-1]} | sed -E 's/.*y=([0-9]+).*/\1/')+$(echo ${clients[$i-1]} | sed -E 's/.*height=([0-9]+).*/\1/')+SPACING))
+    newy=$((i==0 ? "$SPACINGY" : $(echo "${clients[$i-1]}" | sed -E 's/.*y=([0-9]+).*/\1/')+$(echo "${clients[$i-1]}" | sed -E 's/.*height=([0-9]+).*/\1/')+SPACING))
     clients[$i]=$(echo "$c" | sed -E "s/(y=)[0-9]+/\1$newy/" | sed -E "s/(height=)[0-9]+/\1$newheight/") 
   done
 fi
