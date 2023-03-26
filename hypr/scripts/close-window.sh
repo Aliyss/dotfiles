@@ -4,11 +4,9 @@ SPACINGR=10;
 SPACINGL=0;
 
 ACTIVECLIENTENDTIMEOUT=1
-ACTIVECLIENTFLOATING=$(~/.config/hypr/scripts/helpers/get_client_details.sh "floating")
-hyprctl dispatch killactive
+ACTIVECLIENTFLOATING=$(~/.config/hypr/scripts/helpers/get_client_details.sh "floating" "$1" "Window")
 
 if [[ $ACTIVECLIENTFLOATING != 1 ]]; then
-  echo "here for some reason"
   exit
 fi
 
