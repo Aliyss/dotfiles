@@ -4,10 +4,11 @@ SPACINGR=10;
 SPACINGL=0;
 
 ACTIVECLIENTENDTIMEOUT=1
+ACTIVECLIENTFLOATING=$(~/.config/hypr/scripts/helpers/get_client_details.sh "floating")
 hyprctl dispatch killactive
 
-ACTIVECLIENTFLOATING=$(~/.config/hypr/scripts/helpers/get_client_details.sh "floating")
 if [[ $ACTIVECLIENTFLOATING != 1 ]]; then
+  echo "here for some reason"
   exit
 fi
 
@@ -32,7 +33,6 @@ group=""
 clients=();
 sleep $ACTIVECLIENTENDTIMEOUT
 grouped=$(hyprctl clients | grep -A 10 -P "Window.*+" | grep -A 5 -C 5 -P "floating:\s1" | grep -A 11 -C 11 -P "monitor: $MONITOR_ID" | awk '{$1=$1};1' | grep -C 9 "pid:\s");
-
 if [[ -n "$grouped" ]]; then
   while read -r line; do
     if [ "$line" == "--" ] && [ -n "$group" ]; then
@@ -74,8 +74,10 @@ else
 
   for i in "${!clients[@]}"; do
     c="${clients[$i]}"
+    echo "$c"
     height=$(echo "$c" | sed -E 's/.*height=([0-9]+).*/\1/')
     newheight=$((height*MONITORHEIGHT/totalheight-SPACING))
+    echo "$newheight"
     newy=$((i==0 ? "$SPACINGY" : $(echo "${clients[$i-1]}" | sed -E 's/.*y=([0-9]+).*/\1/')+$(echo "${clients[$i-1]}" | sed -E 's/.*height=([0-9]+).*/\1/')+SPACING))
     clients[$i]=$(echo "$c" | sed -E "s/(y=)[0-9]+/\1$newy/" | sed -E "s/(height=)[0-9]+/\1$newheight/") 
   done
