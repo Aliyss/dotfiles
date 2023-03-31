@@ -4,6 +4,8 @@ SPACINGR=10;
 SPACINGL=0;
 
 ACTIVECLIENTENDTIMEOUT=1
+
+ACTIVECLIENTAT=$(~/.config/hypr/scripts/helpers/get_client_details.sh "at" "$1")
 ACTIVECLIENTFLOATING=$(~/.config/hypr/scripts/helpers/get_client_details.sh "floating" "$1" "Window")
 
 if [[ $ACTIVECLIENTFLOATING != 1 ]]; then
@@ -23,6 +25,12 @@ MONITORHEIGHT=$(echo "$MONITORSIZE" | sed 's/.*x//')
 MONITORHEIGHT=$((MONITORHEIGHT-2*SPACINGY))
 
 RESERVESPACE=$(~/.config/hypr/scripts/helpers/get_active_monitor_size.sh "reserved");
+
+
+ACTIVECLIENTATX=$(echo "$ACTIVECLIENTAT" | sed 's/,.*//')
+if (((MONITORWIDTH - ACTIVECLIENTATX) > RESERVESPACE )); then
+  exit
+fi
 
 MONITOR_ID=$(~/.config/hypr/scripts/helpers/get_active_monitor_size.sh "id")
 MONITORNAME=$(~/.config/hypr/scripts/helpers/get_active_monitor_size.sh "name")

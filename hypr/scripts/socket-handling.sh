@@ -1,7 +1,7 @@
 function handle {
   if [[ $1 == closewindow\>\>* ]]; then
     address=$(echo "$1" | sed 's/.*>>//')
-    ~/.config/hypr/scripts/close-window.sh "Window $address" > ~/.config/hypr/scripts/test.txt 
+    ~/.config/hypr/scripts/close-window.sh "Window $address" 
   fi
 }
 
