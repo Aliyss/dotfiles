@@ -58,6 +58,7 @@ require("packer").startup(function(use)
 	use("folke/tokyonight.nvim")
 	use("nvim-lualine/lualine.nvim")
 	use("kyazdani42/nvim-web-devicons")
+	use("echasnovski/mini.indentscope")
 
 	-- Formatting-related plugins
 	use("windwp/nvim-autopairs")
@@ -91,6 +92,7 @@ require("packer").startup(function(use)
 	use("neovim/nvim-lspconfig")
 	use("RRethy/vim-illuminate")
 	use("jay-babu/mason-null-ls.nvim")
+	use("folke/trouble.nvim")
 
 	-- Intellisense-related plugins
 	--[[ use("neoclide/coc.nvim") ]]
