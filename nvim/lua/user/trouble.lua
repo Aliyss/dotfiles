@@ -4,6 +4,6 @@ if not status_ok then
 end
 
 configs.setup({
-	use_diagnostic_signs = false,
+	use_diagnostic_signs = true,
 	auto_open = true,
 })

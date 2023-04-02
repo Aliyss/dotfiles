@@ -95,6 +95,7 @@ require("packer").startup(function(use)
 	use("folke/trouble.nvim")
 
 	-- Intellisense-related plugins
+	use("lvimuser/lsp-inlayhints.nvim")
 	--[[ use("neoclide/coc.nvim") ]]
 	--[[ use("codechips/coc-svelte") ]]
 

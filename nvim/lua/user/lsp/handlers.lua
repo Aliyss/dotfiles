@@ -92,6 +92,19 @@ M.on_attach = function(client, bufnr)
 		return
 	end
 	illuminate.on_attach(client)
+
+	local status_ok, ih = pcall(require, "inlay-hints")
+	if not status_ok then
+		return
+	end
+
+	if client.name == "tsserver" then
+		ih.on_attach(client, bufnr)
+	end
+
+	if client.name == "lua_ls" then
+		ih.on_attach(client, bufnr)
+	end
 end
 
 return M

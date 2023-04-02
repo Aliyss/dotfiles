@@ -15,14 +15,21 @@ vim.cmd([[hi NvimTreeNormalNC guibg=NONE ctermbg=NONE]])
 -- vim.cmd([[hi ]])
 vim.cmd([[hi WhichKey guibg=NONE ctermbg=NONE]])
 vim.cmd([[hi WhichKeyFloat guibg=NONE ctermbg=NONE]])
+
 vim.cmd([[hi LspFloatWinNormal guibg=NONE ctermbg=NONE]])
-vim.cmd([[hi TroubleNormal guibg=NONE ctermbg=NONE]])
+vim.cmd([[hi LspInfoList guibg=NONE ctermbg=NONE]])
+vim.cmd([[hi LspInlayHint guibg=NONE ctermbg=NONE]])
+
+-- vim.cmd([[hi TroubleNormal guibg=NONE ctermbg=NONE]])
+
 vim.cmd([[hi TelescopeNormal guibg=NONE ctermbg=NONE]])
 vim.cmd([[hi TelescopeBorder guibg=NONE ctermbg=NONE]])
-vim.cmd([[hi NormalFloat guibg=NONE ctermbg=NONE]])
+
 vim.cmd([[hi Normal guibg=NONE ctermbg=NONE]])
 vim.cmd([[hi NormalSB guibg=NONE ctermbg=NONE]])
-vim.cmd([[hi LspInfoList guibg=NONE ctermbg=NONE]])
+vim.cmd([[hi NormalFloat guibg=NONE ctermbg=NONE]])
+vim.cmd([[hi FloatBorder guibg=NONE ctermbg=NONE]])
+
 -- vim.cmd([[hi LspReferenceRead cterm=bold ctermbg=red guibg=LightYellow]])
 -- vim.cmd([[hi LspReferenceText cterm=bold ctermbg=red guibg=LightYellow]])
 -- vim.cmd([[hi LspReferenceWrite cterm=bold ctermbg=red guibg=LightYellow]])
