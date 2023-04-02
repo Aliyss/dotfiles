@@ -53,6 +53,7 @@ require("packer").startup(function(use)
 	use("goolord/alpha-nvim")
 	use("nvim-telescope/telescope.nvim")
 	use("folke/which-key.nvim")
+	use({ "rcarriga/nvim-dap-ui", requires = { "mfussenegger/nvim-dap" } })
 
 	-- Theme-related plugins
 	use("folke/tokyonight.nvim")
