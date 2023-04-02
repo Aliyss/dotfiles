@@ -67,7 +67,7 @@ require("packer").startup(function(use)
 	use("akinsho/bufferline.nvim")
 	use("lukas-reineke/indent-blankline.nvim")
 	--[[ use("prettier/vim-prettier") ]]
-	use("w0rp/ale")
+	--[[ use("w0rp/ale") -- This is what is showing duplicate Errors. ]]
 	use("Shougo/context_filetype.vim")
 
 	-- CMP-related plugins

@@ -25,7 +25,7 @@ require("user.alpha")
 require("user.lsp")
 require("user.rust-tools")
 
-require("user.ale")
+-- require("user.ale")
 -- require("user.html5")
 require("user.context_filetype")
 -- require("user.coc")

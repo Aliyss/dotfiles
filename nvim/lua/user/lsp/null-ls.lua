@@ -30,8 +30,11 @@ null_ls.setup({
 			extra_filetypes = { "toml" },
 			extra_args = { "--no-semi", "--single-quote", "--jsx-single-quote" },
 		}),
+		formatting.eslint_d.with({
+			extra_filetypes = { "svelte", "ts" },
+		}),
 		formatting.prettierd.with({
-			extra_filetypes = { "svelte" },
+			extra_filetypes = { "svelte", "ts" },
 		}),
 		formatting.black.with({ extra_args = { "--fast" } }),
 		formatting.stylua,
