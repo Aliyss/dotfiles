@@ -16,5 +16,6 @@ masonnullls.setup({
 		"shfmt",
 		"bash-language-server",
 		"shellcheck",
+		"js-debug-adapter",
 	},
 })

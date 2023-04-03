@@ -53,7 +53,18 @@ require("packer").startup(function(use)
 	use("goolord/alpha-nvim")
 	use("nvim-telescope/telescope.nvim")
 	use("folke/which-key.nvim")
-	use({ "rcarriga/nvim-dap-ui", requires = { "mfussenegger/nvim-dap" } })
+	use({ "rcarriga/nvim-notify" })
+
+	-- Debugger-related plugins
+	use({ "mfussenegger/nvim-dap" })
+	use({ "rcarriga/nvim-dap-ui" })
+	use({ "theHamsta/nvim-dap-virtual-text" })
+	use({ "mxsdev/nvim-dap-vscode-js" })
+	use({
+		"microsoft/vscode-js-debug",
+		opt = true,
+		run = "npm install --legacy-peer-deps && npx gulp vsDebugServerBundle && mv dist out",
+	})
 
 	-- Theme-related plugins
 	use("folke/tokyonight.nvim")
@@ -69,7 +80,7 @@ require("packer").startup(function(use)
 	use("lukas-reineke/indent-blankline.nvim")
 	--[[ use("prettier/vim-prettier") ]]
 	--[[ use("w0rp/ale") -- This is what is showing duplicate Errors. ]]
-	use("Shougo/context_filetype.vim")
+	--[[ use("Shougo/context_filetype.vim") ]]
 
 	-- CMP-related plugins
 	use("hrsh7th/nvim-cmp")
@@ -94,14 +105,12 @@ require("packer").startup(function(use)
 	use("RRethy/vim-illuminate")
 	use("jay-babu/mason-null-ls.nvim")
 	use("folke/trouble.nvim")
+	use("folke/neodev.nvim")
 
 	-- Intellisense-related plugins
 	use("lvimuser/lsp-inlayhints.nvim")
 	--[[ use("neoclide/coc.nvim") ]]
 	--[[ use("codechips/coc-svelte") ]]
-
-	-- Debugger-related plugins
-	use("mfussenegger/nvim-dap")
 
 	-- Git-related plugins
 	use("kdheepak/lazygit.nvim")

@@ -3,4 +3,4 @@ if not status_ok then
 	return
 end
 
-context_filetype.setup()
+context_filetype.setup({})
