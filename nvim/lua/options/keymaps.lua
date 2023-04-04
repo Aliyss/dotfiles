@@ -39,6 +39,9 @@ keymap("n", "<leader>h", "<cmd>nohlsearch<CR>", opts)
 -- Close buffers
 keymap("n", "<S-q>", "<cmd>Bdelete!<CR>", opts)
 
+-- Open Config
+keymap("n", "<leader>c", ":e ~/.config/nvim/init.lua <CR>", opts)
+
 -- Better paste
 keymap("v", "p", '"_dP', opts)
 

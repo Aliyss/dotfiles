@@ -3,6 +3,10 @@ if not status_ok then
 	return
 end
 
+local extension_path = vim.fn.glob(vim.fn.stdpath("data") .. "/mason/packages/codelldb/extension/") or ""
+local codelldb_path = extension_path .. "adapter/codelldb"
+local liblldb_path = extension_path .. "lldb/lib/liblldb.so"
+
 local opts = {
 	tools = { -- rust-tools options
 		executor = require("rust-tools/executors").termopen, -- can be quickfix or termopen
@@ -40,7 +44,13 @@ local opts = {
 		-- standalone file support
 		-- setting it to false may improve startup time
 		standalone = true,
-		on_attach = require("user.lsp.handlers").on_attach,
+		on_attach = function(client, bufnr)
+			-- Hover actions
+			vim.keymap.set("n", "<C-x>", rust_tools.hover_actions.hover_actions, { buffer = bufnr })
+			-- Code action groups
+			vim.keymap.set("n", "<Leader>a", rust_tools.code_action_group.code_action_group, { buffer = bufnr })
+			require("user.lsp.handlers").on_attach(client, bufnr)
+		end,
 		capabilities = require("user.lsp.handlers").capabilities,
 		settings = {
 			-- to enable rust-analyzer settings visit:
@@ -56,11 +66,7 @@ local opts = {
 
 	-- debugging stuff
 	dap = {
-		adapter = {
-			type = "executable",
-			command = "lldb-vscode",
-			name = "rt_lldb",
-		},
+		adapter = require("rust-tools.dap").get_codelldb_adapter(codelldb_path, liblldb_path),
 	},
 }
 

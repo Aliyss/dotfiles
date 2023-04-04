@@ -6,6 +6,9 @@ end
 whichkey.setup({})
 
 whichkey.register({
+	["<leader>c"] = {
+		desc = "Open Config",
+	},
 	["<leader>b"] = {
 		name = "+Buffers",
 		j = { "<cmd>BufferLinePick<cr>", "Jump" },
