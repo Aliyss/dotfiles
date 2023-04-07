@@ -54,6 +54,8 @@ require("packer").startup(function(use)
 	use("nvim-telescope/telescope.nvim")
 	use("folke/which-key.nvim")
 	use({ "rcarriga/nvim-notify" })
+	use("nvim-lua/harpoon.nvim")
+	use("ThePrimeagen/harpoon")
 
 	-- Debugger-related plugins
 	use({ "mfussenegger/nvim-dap" })
