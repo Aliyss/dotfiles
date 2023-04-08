@@ -1,0 +1,6 @@
+require("user.windows.alpha")
+require("user.windows.notify")
+require("user.windows.nvimtree")
+require("user.windows.project")
+require("user.windows.telescope")
+require("user.windows.whichkey")

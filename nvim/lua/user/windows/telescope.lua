@@ -1,11 +1,13 @@
-local status_ok, telescope = pcall(require, "telescope")
+local status_ok, config = pcall(require, "telescope")
 if not status_ok then
 	return
 end
 
 local actions = require("telescope.actions")
 
-telescope.setup({
+config.load_extension("media_files")
+
+config.setup({
 	defaults = {
 
 		prompt_prefix = " ",
@@ -20,6 +22,15 @@ telescope.setup({
 				["<C-j>"] = actions.move_selection_next,
 				["<C-k>"] = actions.move_selection_previous,
 			},
+		},
+	},
+	extensions = {
+		media_files = {
+			-- filetypes whitelist
+			-- defaults to {"png", "jpg", "mp4", "webm", "pdf"}
+			filetypes = { "png", "webp", "jpg", "jpeg", "webm", "pdf", "mkv" },
+			-- find command (defaults to `fd`)
+			find_cmd = "fd",
 		},
 	},
 })

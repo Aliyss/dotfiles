@@ -12,7 +12,6 @@ end
 vim.cmd([[hi NvimTreeNormal guibg=NONE ctermbg=NONE]])
 vim.cmd([[hi NvimTreeNormalNC guibg=NONE ctermbg=NONE]])
 
--- vim.cmd([[hi ]])
 vim.cmd([[hi WhichKey guibg=NONE ctermbg=NONE]])
 vim.cmd([[hi WhichKeyFloat guibg=NONE ctermbg=NONE]])
 
@@ -20,10 +19,14 @@ vim.cmd([[hi LspFloatWinNormal guibg=NONE ctermbg=NONE]])
 vim.cmd([[hi LspInfoList guibg=NONE ctermbg=NONE]])
 vim.cmd([[hi LspInlayHint guibg=NONE ctermbg=NONE]])
 
--- vim.cmd([[hi TroubleNormal guibg=NONE ctermbg=NONE]])
+vim.cmd([[hi TroubleNormal guibg=NONE ctermbg=NONE]])
 
 vim.cmd([[hi TelescopeNormal guibg=NONE ctermbg=NONE]])
 vim.cmd([[hi TelescopeBorder guibg=NONE ctermbg=NONE]])
+
+vim.cmd([[ hi link tkLink Special ]])
+vim.cmd([[ hi tkBrackets ctermfg=gray guifg=gray ]])
+vim.cmd([[ hi link tkTag Constant ]])
 
 vim.cmd([[hi Normal guibg=NONE ctermbg=NONE]])
 vim.cmd([[hi NormalSB guibg=NONE ctermbg=NONE]])

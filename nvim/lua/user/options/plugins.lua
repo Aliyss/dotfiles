@@ -56,6 +56,7 @@ require("packer").startup(function(use)
 	use({ "rcarriga/nvim-notify" })
 	use("nvim-lua/harpoon.nvim")
 	use("ThePrimeagen/harpoon")
+	use("nvim-telescope/telescope-media-files.nvim")
 
 	-- Debugger-related plugins
 	use({ "mfussenegger/nvim-dap" })
@@ -130,6 +131,12 @@ require("packer").startup(function(use)
 
 	-- Javascript-related plugins
 	use("pangloss/vim-javascript")
+
+	-- Markdown-related plugins
+	--[[ use("godlygeek/tabular") ]]
+	--[[ use("preservim/vim-markdown") ]]
+	use("renerocksai/telekasten.nvim")
+	use("nvim-neorg/neorg")
 
 	-- Typescript-related plugins
 	--[[ use("HerringtonDarkholme/yats.vim") ]]

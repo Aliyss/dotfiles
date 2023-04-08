@@ -19,11 +19,10 @@ local custom_adapter = "pwa-node-custom"
 dap.adapters[custom_adapter] = function(cb, config)
 	if config.preLaunchTask then
 		local async = require("plenary.async")
-		local notify = require("notify").async
 
 		async.run(function()
 			---@diagnostic disable-next-line: missing-parameter
-			notify("Running [" .. config.preLaunchTask .. "]").events.close()
+			vim.notify("Running [" .. config.preLaunchTask .. "]").events.close()
 		end, function()
 			vim.fn.system(config.preLaunchTask)
 			config.type = "pwa-node"
@@ -35,11 +34,10 @@ end
 local custom_node_adapter = "node-custom"
 dap.adapters[custom_node_adapter] = function(cb, config)
 	local async = require("plenary.async")
-	local notify = require("notify").async
 
 	async.run(function()
 		---@diagnostic disable-next-line: missing-parameter
-		notify("Running [" .. custom_node_adapter .. "]").events.close()
+		vim.notify("Running [" .. custom_node_adapter .. "]").events.close()
 	end, function()
 		config.type = "pwa-node"
 		dap.run(config)

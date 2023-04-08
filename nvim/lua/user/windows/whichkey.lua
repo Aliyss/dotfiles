@@ -64,4 +64,17 @@ whichkey.register({
 		s = { desc = "Signature Help" },
 		q = { desc = "Set Location List Diagnostic" }, -- https://github.com/ten3roberts/qf.nvim
 	},
+  ["<leader>z"] = {
+    name = "+Zettelkasten",
+    f = { "<cmd>Telekasten find_notes<CR>", "Find Notes" },
+    g = { "<cmd>Telekasten search_notes<CR>", "Search Notes" },
+    d = { "<cmd>Telekasten goto_today<CR>", "GoTo Today" },
+    z = { "<cmd>Telekasten follow_link<CR>", "Follow Link" },
+    n = { "<cmd>Telekasten new_note<CR>", "New Note" },
+    c = { "<cmd>Telekasten show_calendar<CR>", "Show Calendar" },
+    b = { "<cmd>Telekasten show_backlinks<CR>", "Show Backlinks" },
+    I = { "<cmd>Telekasten insert_img_link<CR>", "Insert Image Link" },
+    i = { "<cmd>Telekasten insert_link<CR>", "Insert Link" }
+  }
+
 })

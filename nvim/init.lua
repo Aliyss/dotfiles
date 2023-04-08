@@ -1,18 +1,23 @@
-require("options.options")
-require("options.keymaps")
-require("options.plugins")
-require("options.autocommands")
+-- [[ Setup Options ]]
+require("user.options")
+
+--[[ Window-related Plugins ]]
+require("user.windows")
+
+--[[ Window-related Plugins ]]
+require("user.themes")
+
+--[[ Language-related Plugins ]]
+require("user.markdown")
 
 -- require("user.ale")
 -- require("user.coc")
 -- require("user.coc-svelte")
 -- require("user.html5")
 -- require("user.yats")
-require("user.alpha")
 require("user.autopairs")
 require("user.bufferline")
 require("user.cmp")
-require("user.colorscheme")
 require("user.comment")
 -- require("user.context_filetype")
 require("user.dapui")
@@ -22,18 +27,11 @@ require("user.impatient")
 require("user.indentblankline")
 require("user.inlay-hints")
 require("user.lsp")
-require("user.lualine")
-require("user.mini-indentscope")
 require("user.neodev")
-require("user.notify")
-require("user.nvimtree")
-require("user.project")
 require("user.rust-tools")
-require("user.telescope")
 require("user.toggleterm")
 require("user.treesitter")
 require("user.trouble")
 -- require("user.vim-javascript")
 -- require("user.vim-prettier")
 -- require("user.vim-svelte")
-require("user.whichkey")
