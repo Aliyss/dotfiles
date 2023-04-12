@@ -136,7 +136,8 @@ require("packer").startup(function(use)
 	--[[ use("godlygeek/tabular") ]]
 	--[[ use("preservim/vim-markdown") ]]
 	use("renerocksai/telekasten.nvim")
-	use("nvim-neorg/neorg")
+	--[[ use("nvim-neorg/neorg") ]]
+	use("nvim-orgmode/orgmode")
 
 	-- Typescript-related plugins
 	--[[ use("HerringtonDarkholme/yats.vim") ]]

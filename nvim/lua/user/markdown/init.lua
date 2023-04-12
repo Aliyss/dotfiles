@@ -1,2 +1,2 @@
 require("user.markdown.telekasten")
-require("user.markdown.neorg")
+require("user.markdown.orgmode")
