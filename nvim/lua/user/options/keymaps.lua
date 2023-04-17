@@ -41,6 +41,7 @@ keymap("n", "<S-q>", "<cmd>Bdelete!<CR>", opts)
 
 -- Open Config
 keymap("n", "<leader>c", ":e ~/.config/nvim/init.lua <CR>", opts)
+keymap("n", "<leader>w", ":w <CR>", opts)
 
 -- Better paste
 keymap("v", "p", '"_dP', opts)
