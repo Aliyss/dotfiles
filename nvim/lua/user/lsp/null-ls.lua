@@ -32,9 +32,11 @@ null_ls.setup({
 		}),
 		formatting.eslint_d.with({
 			extra_filetypes = { "svelte", "ts" },
+			extra_args = { "--fast" },
 		}),
 		formatting.prettierd.with({
 			extra_filetypes = { "svelte", "ts" },
+			extra_args = { "--fast" },
 		}),
 		formatting.black.with({ extra_args = { "--fast" } }),
 		formatting.stylua,

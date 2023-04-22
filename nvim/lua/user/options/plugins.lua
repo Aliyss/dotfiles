@@ -54,7 +54,6 @@ require("packer").startup(function(use)
 	use("nvim-telescope/telescope.nvim")
 	use("folke/which-key.nvim")
 	use({ "rcarriga/nvim-notify" })
-	use("nvim-lua/harpoon.nvim")
 	use("ThePrimeagen/harpoon")
 	use("nvim-telescope/telescope-media-files.nvim")
 
