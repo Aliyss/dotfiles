@@ -14,5 +14,14 @@ configs.setup({
 	autopairs = {
 		enable = true,
 	},
-	indent = { enable = true, disable = { "python", "css" } },
+	indent = { enable = true, disable = { "python" } },
+	autotag = {
+		enable = true,
+		filetypes = {
+			"javascript",
+			"typescript",
+			"html",
+			"svelte",
+		},
+	},
 })

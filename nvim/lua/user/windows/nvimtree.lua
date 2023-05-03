@@ -8,8 +8,6 @@ if not config_status_ok then
 	return
 end
 
-local tree_cb = nvim_tree_config.nvim_tree_callback
-
 local function on_attach(bufnr)
 	local api = require("nvim-tree.api")
 
@@ -141,7 +139,7 @@ nvim_tree.setup({
 		ignore = false,
 	},
 	view = {
-		width = 30,
+		width = 80,
 		side = "left",
 	},
 })
