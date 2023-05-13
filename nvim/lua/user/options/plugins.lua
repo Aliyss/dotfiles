@@ -111,8 +111,6 @@ require("packer").startup(function(use)
 
 	-- Intellisense-related plugins
 	use("lvimuser/lsp-inlayhints.nvim")
-	--[[ use("neoclide/coc.nvim") ]]
-	--[[ use("codechips/coc-svelte") ]]
 
 	-- Git-related plugins
 	use("kdheepak/lazygit.nvim")
@@ -132,10 +130,7 @@ require("packer").startup(function(use)
 	use("pangloss/vim-javascript")
 
 	-- Markdown-related plugins
-	--[[ use("godlygeek/tabular") ]]
-	--[[ use("preservim/vim-markdown") ]]
 	use("renerocksai/telekasten.nvim")
-	--[[ use("nvim-neorg/neorg") ]]
 	use("nvim-orgmode/orgmode")
 
 	-- Typescript-related plugins
