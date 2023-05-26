@@ -58,6 +58,9 @@ keymap("v", ">", ">gv", opts)
 -- Plugins --
 
 -- NvimTree
+keymap("n", "<leader>a", ":Alpha<CR>", opts)
+
+-- NvimTree
 keymap("n", "<leader>e", ":NvimTreeToggle<CR>", opts)
 
 -- Telescope

@@ -6,6 +6,9 @@ end
 whichkey.setup({})
 
 whichkey.register({
+	["<leader>a"] = {
+		desc = "Open Alpha",
+	},
 	["<leader>c"] = {
 		desc = "Open Config",
 	},
